@@ -6,14 +6,14 @@ This project is part of Udacity's Natural Language Processing Nanodegree.
 
 The notebook showcases a deep neural network that functions as part of an end-to-end automatic speech recognition (ASR) pipeline. The pipeline accepts raw audio as input (.wav audio files) and returns a predicted transcription of the spoken language. The full pipeline is summarized in the figure below.
 
-![](asset/pipeline.png)
+![](images/pipeline.png)
 
 The pipeline follows this steps: 
 - STEP 1 is a pre-processing step that converts raw audio to one of two feature representations that are commonly used for ASR: Spectrograms or MFCC (Mel Frequency Cepstral Coefficients). They both represents the frequencies of the audio signal over time. They represent extracted features from the audio signal which is easier to work with.
 
 example of a spectrogram:
 
-![](asset/spectrogram.jpg)
+![](images/spectrogram.jpg)
 
 - STEP 2 is an acoustic model which accepts these extracted audio features as input and returns a probability distribution over all potential transcriptions. This step leverages Recurrent Neural Network capabilities to work over time series as we will process features extrated from an audio signal in order to translate into written output.
 
