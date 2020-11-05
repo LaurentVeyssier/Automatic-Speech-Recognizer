@@ -67,8 +67,8 @@ A panel of various RNNs are tested.
 
 - xxxxxxxxxxxxxxxxxx
 
-The relative performances are presented below.
+The relative performances are presented below (training loss left and validation loss right).
 
-![](images/training_loss.png)                            ![](images/validation_loss.png)
+![](images/validation_loss.png)
 
 # Results
