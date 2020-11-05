@@ -55,17 +55,17 @@ The objective of the CTC loss function is to basically have the softmax output o
 # Tested models
 
 A panel of various RNNs are tested.
-- Simple GRU with softmax output. This is a very simple model using a GRU cell because recurrent neural network (RNN) are very effective in modeling sequential data. The softmax output of the RNN at each time step is a vector of probabilities with 29 entries, where the  𝑖 -th entry encodes the probability that the  𝑖 -th character is spoken in the time sequence.
+- model_0: Simple GRU with softmax output. This is a very simple model using a GRU cell because recurrent neural network (RNN) are very effective in modeling sequential data. The softmax output of the RNN at each time step is a vector of probabilities with 29 entries, where the  𝑖 -th entry encodes the probability that the  𝑖 -th character is spoken in the time sequence.
 
-- GRU cell with a Dense layer to output the probability of the grapheme (character). A BatchNormalization is normalizing the output of the GRU section. This requires a TimeDistributed wrapper around the Dense layer to output the predicted sequence. The TimeDistributed layer will be used to find more complex patterns in the dataset. The output of the GRU RNN is assimilated as a hidden layer. The TimeDistributed is used to apply a Dense layer to each of the time steps in the RNN output. The Dense will be repeated as many as timesteps to ensure the output will constitutes a volume of probability distribution for each time step.
+- model_1: GRU cell with a Dense layer to output the probability of the grapheme (character). A BatchNormalization is normalizing the output of the GRU section. This requires a TimeDistributed wrapper around the Dense layer to output the predicted sequence. The TimeDistributed layer will be used to find more complex patterns in the dataset. The output of the GRU RNN is assimilated as a hidden layer. The TimeDistributed is used to apply a Dense layer to each of the time steps in the RNN output. The Dense will be repeated as many as timesteps to ensure the output will constitutes a volume of probability distribution for each time step.
 
-- A sequence of 1-dimension CNN layer + RNN with BatchNorm + TimeDistributed Dense layer with Softmax output. The idea is that the features input (spectrograms) can also be viewed as images. Therefore their analysis will be handled by a 1-dimension Convolution layer which are the go-to solution to process images.
+- model_2: A sequence of 1-dimension CNN layer + RNN with BatchNorm + TimeDistributed Dense layer with Softmax output. The idea is that the features input (spectrograms) can also be viewed as images. Therefore their analysis will be handled by a 1-dimension Convolution layer which are the go-to solution to process images.
 
-- A Deeper RNN (2 GRU cells) with BatchNorm and TimeDistributed Dense layer with Softmax output.
+- model_3: A Deeper RNN (2 GRU cells) with BatchNorm and TimeDistributed Dense layer with Softmax output.
 
-- A Bidirectional GRU layer followed by TimeDistributed Dense layer with Softmax output. No BatchNorm is used here.
+- model_4: A Bidirectional GRU layer followed by TimeDistributed Dense layer with Softmax output. No BatchNorm is used here.
 
-- xxxxxxxxxxxxxxxxxx
+- model_5 :xxxxxxxxxxxxxxxxxx
 
 The relative performances are presented below (training loss left and validation loss right).
 
