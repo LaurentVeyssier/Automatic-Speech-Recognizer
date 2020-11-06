@@ -96,16 +96,14 @@ Why is Model_5 performing the best ?
 
 I decided to build upon the best model identified in the exploration phase, ie Model_5. The final model therefore uses:
 - A 1D Convolutional layer after the input layer to extract temporal features from spectrograms considered as a sequence of vectors of dimension 161. This proved effective in the tested architectures above and able to "summarize" and extract the key information
-- 2 x SimpleRNN layers instead of GRU or LSTM. LSTM lead to exploding gradient very easily. Compared to GRU, the SimpleRNN proved to run much faster with limited reduction in performance. I limited the depth to 2 layers. This reduces the vanishing gradient issue with deeper architectures (the deeper the architecture, the more challenging becomes backpropagation). I tried a 3-layer deep network but it did not manage to converge (both losses oscillated just over 200).
-- BatchNormalization applied to each layer output including input layer. This helps the model to find the optimal solution quicker. This proved efficient on Model_3 and Model_5 vs the other architectures.
+- 2 x SimpleRNN layers instead of GRU or LSTM. LSTM lead to exploding gradient very easily. Compared to GRU, the SimpleRNN proved to run much faster with limited reduction in performance. I limited the depth to 2 layers. This reduces the vanishing gradient issue with deeper architectures (the deeper the architecture, the more challenging becomes backpropagation).
+- BatchNormalization is applied to each input. This helps the model to find the optimal solution quicker.
 
 Other characteristics:
-- In order to minimize overfitting risk from this architecture, I applied 10% drop out on each rnn layer.
-- I increased the number of units of the RNN network to 512. This improves the convergence of the model compared to Model_5 (units = 200) and helps minimizing overfitting.
-- TimeDistributed wrapper over the Dense layer so that to process each time step.
+- To minimize overfitting risk, I apply 10% drop out on each rnn layer.
+- I increased the number of units of the RNN network to 512. This improves the convergence compared to Model_5 (units = 200).
+- Utilization of the TimeDistributed wrapper over the Dense layer resulting into one Dense layer for each timestep.
 
-Transcription achieved from an audit segment:
+Sample inference : Transcription achieved from an audit segment with the final model after 20 epochs
 
 ![](images/transcription1.jpg)
-
-
