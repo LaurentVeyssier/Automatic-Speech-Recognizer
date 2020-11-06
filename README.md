@@ -2,7 +2,7 @@
 Build end-to-end Deep Neural Network to translate speech to text (ASR model)
 
 # Description
-This project is part of Udacity's Natural Language Processing Nanodegree.
+This is the last project of [Udacity's Natural Language Processing Nanodegree](https://www.udacity.com/course/natural-language-processing-nanodegree--nd892).
 
 The notebook showcases a deep neural network that functions as part of an end-to-end automatic speech recognition (ASR) pipeline. The pipeline accepts raw audio as input (.wav audio files) and returns a predicted transcription of the spoken language. The full pipeline is summarized in the figure below.
 
