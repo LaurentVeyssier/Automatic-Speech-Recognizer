@@ -1,4 +1,4 @@
-# Automatic-Speech-Recognizer
+# Automatic-Speech-Recognizer (Speech-to-text engine)
 Build end-to-end Deep Neural Network to translate speech to text (ASR model)
 
 # Description
@@ -95,11 +95,11 @@ Why is Model_5 performing the best ?
 # Final results and conclusion
 
 I decided to build upon the best model identified in the exploration phase, ie Model_5. The final model therefore uses:
-- A 1D Convolutional layer after the input layer to extract temporal features from spectrograms considered as a sequence of vectors of dimension 161. This proved effective in the tested architectures above and able to "summarize" and extract the key information. 
+- A 1D Convolutional layer after the input layer to extract temporal features from spectrograms considered as a sequence of vectors of dimension 161. This proved effective in the tested architectures above and able to "summarize" and extract the key information. One Conv layer is reported to be sufficient in this [Microsoft research paper](https://www.microsoft.com/en-us/research/wp-content/uploads/2015/04/Detailed-Analysis-of-Convolutional-Neural-Networks-for-Speech-Recognitio_Final.pdf). In addition, the author found that "a CNN is capable of learning different spectro-temporal filters including diagonal ones, which we think forms a powerful analyzer to detect different speech phenomena in a spectrogram".
 - 2 x SimpleRNN layers instead of GRU or LSTM. LSTM lead to exploding gradient very easily. Compared to GRU, the SimpleRNN proved to run much faster with limited reduction in performance. I limited the depth to 2 layers. This reduces the vanishing gradient issue with deeper architectures (the deeper the architecture, the more challenging becomes backpropagation).
 - BatchNormalization is applied to each input. This helps the model to find the optimal solution quicker. For a deeper understanding of the benefits of BN you can read this [post](https://www.quora.com/Why-does-batch-normalization-help). In a nutshell:
     - The model will perform much better with values close to 0. During network initialization, the values are set using distributions centered on 0 and with unit variance. So havings all values within this range is like strenghtening a building so that it does not collapse. This is exactly the purpose of BN. 
-    - BN will ensure that there is no deviation overtime called co-variate shift. For deep network during training, hidden layers are gradually deviated from zero mean, unit variance and decorrelated conditions. Small perturbations lead to large change. This is called internal co-variate shift.  This happens because, as the network learns and the weights are updated, the distribution of outputs of a specific layer in the network changes. This forces the higher layers to adapt to that drift, which slows down learning.
+    - BN will ensure that there is no deviation overtime called co-variate shift where changing the parameters of a layer affects the distribution of the inputs to all layers above it. For deep network during training, hidden layers are gradually deviated from zero mean, unit variance and decorrelated conditions. Small perturbations lead to large change. This is called internal co-variate shift. This happens because, as the network learns and the weights are updated, the distribution of outputs of a specific layer in the network changes. This forces the higher layers to adapt to that drift, which slows down learning. 
     - Note that zero mean, unit variance with decorrelation for every dimension for every layer and every gradient update with batch gradient descent and computation of correlation matrices is very storage and computation intensive. Since BN has a regularizing effect it also means we can often remove dropout (which is helpful as dropout usually slows down training). And it helps working with higher learning rate.
 
 Other characteristics:
