@@ -107,6 +107,10 @@ Other characteristics:
 - I increased the number of units of the RNN network to 512. This improves the convergence compared to Model_5 (units = 200).
 - Utilization of the TimeDistributed wrapper over the Dense layer resulting into one Dense layer for each timestep.
 
-Inference : Transcription of an audio segment achieved with the final model after 20 epochs. Not bad !!!!
+Inference :
+- Pass an unseen .wav file to the trained model. The .wav file has some speech recorded on it.
+- The model delivers a written transcript prediction of the audio content (speech-to-text)
+
+Transcription of an audio segment achieved with the final model after 20 epochs. Not bad !!!!
 
 ![](images/transcription1.jpg)
